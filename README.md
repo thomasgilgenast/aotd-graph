@@ -12,7 +12,7 @@ Docker setup instructions (for PyCharm)
      - In the General tab of the Docker Settings window, check the option for
        "Expose daemon on tcp://localhost:2375 without TLS"
      - In the Shared Drives tab of the Docker Settings window, check the option
-       for whatever drive you cloned this project into.
+       for whatever drive you cloned this project into
 
   2. Pull the image from the Docker Cloud
   
@@ -20,8 +20,8 @@ Docker setup instructions (for PyCharm)
 
   3. Configure the Remote Interpreter
      - In PyCharm, under File > Settings, under Project Interpreter, click the
-       gear and choose "Add Remote".
-     - Select "Docker" from the radio buttons.
+       gear and choose "Add Remote"
+     - Select "Docker" from the radio buttons
      - Add a new Server if one doesn't exist yet (accept the defaults)
      - Select `thomasgilgenast/aotd-graph:latest` from the "Image name"
        dropdown
@@ -30,7 +30,8 @@ Docker setup instructions (for PyCharm)
   4. Test the installation
      - Right-click `test.py` and choose "Run 'test'"
      - A new file `test.png` should appear in the project directory
-       ![](test.png)
+     
+     ![](test.png)
 
 Manually updating the Docker image
 ----------------------------------
