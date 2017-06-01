@@ -33,6 +33,14 @@ Docker setup instructions (for PyCharm)
      
      ![](test.png)
 
+Basic usage example
+-------------------
+
+Construct a graph by running `build_graph.py`, then visualize it by running
+`draw_graph.py`.
+
+![](aotd.svg)
+
 Manually updating the Docker image
 ----------------------------------
 

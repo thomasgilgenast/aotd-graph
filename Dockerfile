@@ -19,3 +19,6 @@ ADD requirements.txt /aotd-graph
 
 # install any needed packages specified in requirements.txt
 RUN pip3 install -r requirements.txt
+
+# set default backend in matplotlibrc
+RUN echo "backend: Cairo" >> matplotlibrc
