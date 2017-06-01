@@ -75,12 +75,12 @@ Docker-specific notes
 ### Running scripts against Docker without using PyCharm
 
 You can always run scripts directly within a Docker container by mapping the
-host directory containing this repo to `/aotd-graph` on the container.
+host directory where you cloned this repo to `/aotd-graph` on the container.
 
 For example:
 
-    $ docker run -it -v <host directory>:/aotd-graph aotd-graph python3 build_graph.py
-    $ docker run -it -v <host directory>:/aotd-graph aotd-graph python3 draw_graph.py
+    $ docker run -it -v <host directory>:/aotd-graph thomasgilgenast/aotd-graph python3 build_graph.py
+    $ docker run -it -v <host directory>:/aotd-graph thomasgilgenast/aotd-graph python3 draw_graph.py
 
 ### Manually updating the Docker image
 
