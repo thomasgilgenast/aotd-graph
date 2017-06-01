@@ -31,7 +31,7 @@ def explore(g, queue, visited):
             print('adding edge')
             g.add_edge(v, visited[el['href']])
         elif 'album' in el['title'].lower():
-            print('adding node to %s' % el['title'])
+            print('adding node to %s' % el['title'].encode('utf-8'))
             child = g.add_vertex()
             g.vp['url'][child] = el['href']
             g.vp['title'][child] = el['title']
@@ -75,7 +75,7 @@ def main():
         explore(g, queue, visited)
 
     # save to disk
-    g.save("aotd.gt")
+    g.save('aotd.gt')
 
 
 if __name__ == '__main__':

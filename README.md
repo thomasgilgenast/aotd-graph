@@ -3,8 +3,47 @@ aotd-graph
 
 a graph visualization for "album of the day" selections
 
-Docker setup instructions (for PyCharm)
----------------------------------------
+Basic usage example
+-------------------
+
+Construct a graph by running `build_graph.py`, then visualize it by running
+`draw_graph.py`.
+
+![](aotd.png)
+
+Premise
+-------
+
+The goal is to create a meaningful graph of albums (identified by YouTube URL),
+so that algorithms "near" each other on the graph should be "similar."
+
+Initially, every selected album is a vertex on the graph. How will we connect
+similar albums in meaningful ways?
+
+The idea is to scrape the YouTube URL's to get related URL's for each album, and
+add a new vertex for each related album, with a corresponding new edge from the
+album it was related to. Thus, edges in the graph signify that two albums are
+similar enough that YouTube lists one as a related video from the other. These
+"explored" albums are the small vertices in the image above.
+
+By recursing deeper into the tree of related videos, we hope to eventually flesh
+out the graph.
+
+The final graph is rendered with a force-directed layout that should place
+albums which are more closely connected (shorter path of related videos) or
+more strongly connected (larger number of mutual related videos) closer
+together.
+
+### Caveats
+
+Ideally, we want to explore regions of YouTube video space which represent
+albums, not arbitary links such as cat videos. Therefore, we restrict our
+exploration to videos which contain the substring "album" in their title.
+
+Docker-specific notes
+---------------------
+
+### Docker setup instructions (for PyCharm)
 
   1. Install Docker
      - If Docker does not start, edit `C:\Windows\System32\drivers\etc\hosts`
@@ -33,16 +72,17 @@ Docker setup instructions (for PyCharm)
      
      ![](test.png)
 
-Basic usage example
--------------------
+### Running scripts against Docker without using PyCharm
 
-Construct a graph by running `build_graph.py`, then visualize it by running
-`draw_graph.py`.
+You can always run scripts directly within a Docker container by mapping the
+host directory containing this repo to `/aotd-graph` on the container.
 
-![](aotd.png)
+For example:
 
-Manually updating the Docker image
-----------------------------------
+    $ docker run -it -v <host directory>:/aotd-graph aotd-graph python3 build_graph.py
+    $ docker run -it -v <host directory>:/aotd-graph aotd-graph python3 draw_graph.py
+
+### Manually updating the Docker image
 
 This should happen automatically for pushes to `master`, version tags, and for
 PR's opened against this repo, but for posterity here is the "long way" to do
