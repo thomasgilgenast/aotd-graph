@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
 
 # set working directory and copy files
 WORKDIR /aotd-graph
-ADD requirements.txt matplotlibrc /aotd-graph
+ADD requirements.txt matplotlibrc /aotd-graph/
 
 # install any needed packages specified in requirements.txt
 RUN pip3 install -r requirements.txt
