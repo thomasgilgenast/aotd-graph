@@ -24,16 +24,24 @@ def add_legend(color_dict, cmap=None):
                bbox_to_anchor=(1, 1.05))
 
 
+def quick_map(g, source, fn, value_type):
+    vp = g.new_vertex_property(value_type)
+    map_property_values(g.vp[source], vp, fn)
+    return vp
+
+
 def main():
     g = load_graph('aotd.gt')
     pos = sfdp_layout(g)
     vcmap = matplotlib.cm.jet
     submitter_colors, reverse_map = map_categorical_to_int(g, 'submitter')
-    graph_draw(g, pos, vertex_fill_color=submitter_colors, vcmap=vcmap,
-               mplfig=plt.gcf())
+    graph_draw(
+        g, pos, vertex_fill_color=submitter_colors, vcmap=vcmap,
+        vertex_size=quick_map(g, 'submitter', lambda x: 20 if x else 10, 'int'),
+        edge_pen_width=5, mplfig=plt.gcf())
     add_legend(reverse_map, cmap=vcmap)
     plt.axis('off')
-    plt.savefig('aotd.svg', bbox_inches='tight')
+    plt.savefig('aotd.png', bbox_inches='tight', dpi=300)
 
 
 if __name__ == '__main__':

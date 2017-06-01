@@ -39,7 +39,7 @@ Basic usage example
 Construct a graph by running `build_graph.py`, then visualize it by running
 `draw_graph.py`.
 
-![](aotd.svg)
+![](aotd.png)
 
 Manually updating the Docker image
 ----------------------------------
